@@ -1,33 +1,90 @@
 /**
- * OOPSBannerApp UC4 - Render OOPS as Banner using String Array and Loop
+ * OOPSBannerApp UC8 - Use HashMap for Character Patterns
  *
- * This version improves UC3 by storing banner lines in a String array
- * and printing them using a for-each loop to eliminate repetitive
- * print statements.
+ * This version improves UC7 by using Java Collections Framework
+ * (HashMap) for efficient character pattern lookup.
  *
  * @author Developer
- * @version 4.0
+ * @version 8.0
  */
+
+import java.util.HashMap;
 
 public class OOPSBannerApp {
 
+    // Create HashMap for character patterns
+    public static HashMap<Character, String[]> createCharacterMap() {
+
+        HashMap<Character, String[]> charMap = new HashMap<>();
+
+        charMap.put('O', new String[]{
+                "  *****  ",
+                " *     * ",
+                " *     * ",
+                " *     * ",
+                " *     * ",
+                " *     * ",
+                "  *****  "
+        });
+
+        charMap.put('P', new String[]{
+                " ******  ",
+                " *     * ",
+                " *     * ",
+                " ******  ",
+                " *       ",
+                " *       ",
+                " *       "
+        });
+
+        charMap.put('S', new String[]{
+                "  *****  ",
+                " *       ",
+                " *       ",
+                "  *****  ",
+                "       * ",
+                "       * ",
+                "  *****  "
+        });
+
+        charMap.put(' ', new String[]{
+                "         ",
+                "         ",
+                "         ",
+                "         ",
+                "         ",
+                "         ",
+                "         "
+        });
+
+        return charMap;
+    }
+
+    // Display banner using HashMap
+    public static void displayBanner(String message, HashMap<Character, String[]> charMap) {
+
+        int height = charMap.get('O').length;
+
+        for (int line = 0; line < height; line++) {
+
+            StringBuilder sb = new StringBuilder();
+
+            for (char ch : message.toCharArray()) {
+
+                String[] pattern = charMap.get(ch);
+                sb.append(pattern[line]).append("  ");
+            }
+
+            System.out.println(sb.toString());
+        }
+    }
+
     public static void main(String[] args) {
 
-        // Step 1: Create String array to store 7 banner lines
-        String[] lines = new String[7];
+        HashMap<Character, String[]> charMap = createCharacterMap();
 
-        // Step 2: Populate each line using String.join()
-        lines[0] = String.join(" ", "  *****  ", "  *****  ", " ******  ", "  *****  ");
-        lines[1] = String.join(" ", " *     * ", " *     * ", " *     * ", " *     * ");
-        lines[2] = String.join(" ", " *     * ", " *     * ", " *     * ", " *      ");
-        lines[3] = String.join(" ", " *     * ", " *     * ", " ******  ", "  *****  ");
-        lines[4] = String.join(" ", " *     * ", " *     * ", " *       ", "       * ");
-        lines[5] = String.join(" ", " *     * ", " *     * ", " *       ", " *     * ");
-        lines[6] = String.join(" ", "  *****  ", "  *****  ", " *       ", "  *****  ");
+        String message = "OOPS";
 
-        // Step 3: Use enhanced for loop to print each line
-        for (String line : lines) {
-            System.out.println(line);
-        }
+        displayBanner(message, charMap);
     }
 }
