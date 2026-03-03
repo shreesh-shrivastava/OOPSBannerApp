@@ -1,12 +1,7 @@
-/**
- * UC5 - Inline Array Initialization
- */
-
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
-
-        String[] lines = {
+    public static String[] createBanner() {
+        return new String[]{
                 "  *****    ******    ****** ",
                 " *     *   *     *   *      ",
                 " *     *   *     *   *      ",
@@ -15,9 +10,16 @@ public class OOPSBannerApp {
                 " *     *   *         *      ",
                 "  *****    *         ****** "
         };
+    }
 
+    public static void printBanner(String[] lines) {
         for (String line : lines) {
             System.out.println(line);
         }
+    }
+
+    public static void main(String[] args) {
+        String[] banner = createBanner();
+        printBanner(banner);
     }
 }
